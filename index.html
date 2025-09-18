@@ -1,91 +1,284 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Snehal Garg</title>
-  <link rel="stylesheet" href="style.css">
+
+  <!-- Bootstrap 5 CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+    crossorigin="anonymous"
+  />
+
+  <!-- Minimal custom styles -->
+  <style>
+    html { scroll-behavior: smooth; }
+    body { background: #f8f9fa; }
+
+    /* Section spacing */
+    section { padding: 4rem 0; }
+    section .section-title {
+      border-bottom: 3px solid #20c997; /* teal-ish accent */
+      display: inline-block;
+      padding-bottom: .25rem;
+      margin-bottom: 1.25rem;
+    }
+
+    /* Keep hero image modest */
+    .hero-img {
+      max-width: 280px;
+      border-radius: 0.75rem;
+    }
+    @media (min-width: 768px) {
+      .hero-img { max-width: 340px; }
+    }
+
+    /* Gallery thumbs: tidy, not huge */
+    .gallery-thumb {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      border-radius: .5rem;
+    }
+    @media (min-width: 768px) {
+      .gallery-thumb { height: 180px; }
+    }
+
+    /* Cards look a bit nicer */
+    .soft-card {
+      border: 0;
+      border-radius: 1rem;
+      box-shadow: 0 0.5rem 1.25rem rgba(0,0,0,.06);
+      background: #ffffff;
+    }
+
+    /* Sticky, translucent navbar */
+    .navbar-blur {
+      backdrop-filter: saturate(140%) blur(8px);
+      background-color: rgba(255,255,255,.75);
+    }
+  </style>
 </head>
-<body>
-  <header>
-    <h1>Hello, I'm Snehal Garg!</h1>
-    <p>This website is a little corner of the internet about me and my favorite things!</p>
-    <nav>
-      <a href="#about">About Me</a>
-      <a href="#dog">My Dog</a>
-      <a href="#hobbies">Hobbies</a>
-      <a href="#family">Family</a>
-      <a href="#etsy">Etsy</a>
-      <a href="#travels">Travels</a>
-    </nav>
+<body data-bs-spy="scroll" data-bs-target="#topnav" data-bs-smooth-scroll="true" tabindex="0">
+
+  <!-- NAVBAR -->
+  <nav id="topnav" class="navbar navbar-expand-md navbar-light fixed-top navbar-blur border-bottom">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#home">My Site</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div id="navMenu" class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#dog">My Dog</a></li>
+          <li class="nav-item"><a class="nav-link" href="#hobbies">Hobbies</a></li>
+          <li class="nav-item"><a class="nav-link" href="#family">Family</a></li>
+          <li class="nav-item"><a class="nav-link" href="#etsy">Etsy</a></li>
+          <li class="nav-item"><a class="nav-link" href="#travels">Travels</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO / HOME -->
+  <header id="home" class="py-5" style="margin-top:56px;">
+    <div class="container">
+      <div class="row align-items-center g-4">
+        <div class="col-md-7">
+          <h1 class="display-5 fw-bold">Hi, I’m Snehal Garg!</h1>
+          <p class="lead text-muted">Welcome to my little corner of the internet — a single page with my story, my dog, the things I enjoy, my family, my Etsy shop, and my travels.</p>
+          <div class="d-flex gap-2">
+            <a href="#about" class="btn btn-teal btn-success">Learn more about me</a>
+            <a href="#travels" class="btn btn-outline-secondary">See photos of my travels</a>
+          </div>
+        </div>
+        <div class="col-md-5 text-center">
+          <img src="images/snehal1.jpeg" alt="Me" class="img-fluid hero-img shadow-sm">
+        </div>
+      </div>
+    </div>
   </header>
 
+  <!-- ABOUT -->
   <section id="about">
-    <h2>About Me</h2>
-    <p>Hi! I'm Snehal Garg. Here's a little bit about who I am and what I love.</p>
-    <img src="snehal-images/snehal1.jpeg" alt="Me">
+    <div class="container">
+      <h2 class="section-title">About Me</h2>
+      <div class="row g-4">
+        <div class="col-lg-8">
+          <div class="soft-card p-4">
+            <p class="mb-0 text-muted">
+              I’m Snehal Garg I love traveling, trying new foods, & spending time with my friends, family and dog.
+            </p>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <!-- A single modest image -->
+          <img src="images/snehal1.jpeg" class="img-fluid rounded-3" style="max-width: 320px; display:block; margin-inline:auto;" alt="About image">
+        </div>
+      </div>
+    </div>
   </section>
 
-  <section id="dog">
-    <h2>My Dog</h2>
-    <p>Meet my adorable dog, Bumi! He's named after the character Bumi in the show Avatar: The Last Airbender.</p>
-    <img src="snehal-images/bumi1.jpg" alt="My Dog 1">
-    <img src="snehal-images/bumi2.jpg" alt="My Dog 2">
-    <img src="snehal-images/bumi3.jpg alt="My Dog 3">
-    <img src="snehal-images/bumi5.jpg" alt="My Dog 4">
-    <img src="snehal-images/bumi4.jpg" alt="My Dog 5">
+  <!-- DOG -->
+  <section id="dog" class="bg-light">
+    <div class="container">
+      <h2 class="section-title">My Dog</h2>
+      <div class="row g-4">
+        <div class="col-md-5">
+          <div class="soft-card p-4 h-100">
+            <p class="text-muted mb-0">
+              Meet Bumi! — named after the character in the show Avatar: The Last Airbender
+              Favorite activities: chewing through all of our shoes and furniture.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-7">
+          <div class="row row-cols-2 row-cols-md-3 g-3">
+            <!-- Thumbs; click to open larger in modal -->
+            <div class="col">
+              <img src="images/bumi1.jpg" class="gallery-thumb" alt="Dog photo 1" data-bs-toggle="modal" data-bs-target="#lightboxModal" data-full="images/dog1.jpg">
+            </div>
+            <div class="col">
+              <img src="images/bumi2.jpg" class="gallery-thumb" alt="Dog photo 2" data-bs-toggle="modal" data-bs-target="#lightboxModal" data-full="images/dog2.jpg">
+            </div>
+            <div class="col">
+              <img src="images/bumi3.jpg" class="gallery-thumb" alt="Dog photo 3" data-bs-toggle="modal" data-bs-target="#lightboxModal" data-full="images/dog3.jpg">
+            </div>
+            <div class="col">
+              <img src="images/bumi5.jpg" class="gallery-thumb" alt="Dog photo 3" data-bs-toggle="modal" data-bs-target="#lightboxModal" data-full="images/dog3.jpg">
+            </div>
+            <div class="col">
+              <img src="images/bumi4.jpg" class="gallery-thumb" alt="Dog photo 3" data-bs-toggle="modal" data-bs-target="#lightboxModal" data-full="images/dog3.jpg">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
+  <!-- HOBBIES -->
   <section id="hobbies">
-    <h2>Some Things I Like</h2>
-    <ul>
-      <li>Traveling</li>
-      <li>Trying New Foods</li>
-      <li>Spending time with family & friends</li>
-    </ul>
-  </section>
-
-  <section id="family">
-    <h2>My Family</h2>
-    <p>A photo of my Mom, Dad, Boyfriend, Sister and I after I received my white coat!</p>
-    <div class="gallery">
-      <img src="snehal-images/family1.jpg" alt="Family photo 1">
+    <div class="container">
+      <h2 class="section-title">Things I Like</h2>
+      <div class="row row-cols-1 row-cols-md-3 g-3">
+        <div class="col">
+          <div class="soft-card p-4 h-100">
+            <h5 class="fw-semibold mb-2">Traveling</h5>
+            <p class="text-muted mb-0">I love having new experiences in new places.</p>
+          </div>
+        </div>
+        <div class="col">
+          <div class="soft-card p-4 h-100">
+            <h5 class="fw-semibold mb-2">Trying New Foods</h5>
+            <p class="text-muted mb-0">I love to try new foods from different cultures.</p>
+          </div>
+        </div>
+        <div class="col">
+          <div class="soft-card p-4 h-100">
+            <h5 class="fw-semibold mb-2">Spending time with my friends and family</h5>
+            <p class="text-muted mb-0">I value spending time with the people I care about.</p>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
+  <!-- FAMILY -->
+  <section id="family" class="bg-light">
+    <div class="container">
+      <h2 class="section-title">My Family</h2>
+      <div class="row row-cols-2 row-cols-md-4 g-3">
+        <div class="col"><img src="images/family1.jpg" class="gallery-thumb" alt="Family 1" data-bs-toggle="modal" data-bs-target="#lightboxModal" data-full="images/family1.jpg"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ETSY -->
   <section id="etsy">
-    <h2>My Etsy Shop</h2>
-    <p>I make and sell handmade items. Check out my shop & a few examples below!</p>
-    <a href="https://www.etsy.com/shop/PureImaginationPrint" target="_blank" class="button">Visit My Etsy Shop!</a>
-    <img src="snehal-images/etsy1.png" alt="Etsy photo 1">
-    <img src="snehal-images/etsy2.png" alt="Etsy photo 2">
-    <img src="snehal-images/etsy3.png" alt="Etsy photo 3">
-    <img src="snehal-images/etsy4.png" alt="Etsy photo 4">
-    <img src="snehal-images/etsy5.png" alt="Etsy photo 5">
-  </section>
+    <div class="container">
+      <h2 class="section-title">My Etsy Business</h2>
+      <div class="row g-4 align-items-center">
+        <div class="col-lg-6">
+          <div class="soft-card p-4">
+            <p class="text-muted">
+              I make and sell Indian wedding posters on Etsy.
+              Check out the shop for current listings.
+            </p>
+            <a href="https://www.etsy.com/shop/PureImaginationPrint" target="_blank" class="btn btn-success">Visit my Etsy Shop</a>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="row row-cols-2 g-3">
+            <div class="col"><img src="images/etsy1.png" class="gallery-thumb" alt="Etsy item 1" data-bs-toggle="modal" data-bs-target="#lightboxModal" data-full="images/etsy1.jpg"></div>
+            <div class="col"><img src="images/etsy2.png" class="gallery-thumb" alt="Etsy item 2" data-bs-toggle="modal" data-bs-target="#lightboxModal" data-full="images/etsy2.jpg"></div>
+            <div class="col"><img src="images/etsy3.png" class="gallery-thumb" alt="Etsy item 2" data-bs-toggle="modal" data-bs-target="#lightboxModal" data-full="images/etsy2.jpg"></div>
+            <div class="col"><img src="images/etsy4.png" class="gallery-thumb" alt="Etsy item 2" data-bs-toggle="modal" data-bs-target="#lightboxModal" data-full="images/etsy2.jpg"></div>
+            <div class="col"><img src="images/etsy5.png" class="gallery-thumb" alt="Etsy item 2" data-bs-toggle="modal" data-bs-target="#lightboxModal" data-full="images/etsy2.jpg"></div>
 
-  <section id="travels">
-    <h2>Some of My Travels</h2>
-    <div class="gallery">
-      <img src="snehal-images/mexico1.JPG" alt="Travel photo 1">
-      <img src="snehal-images/travel2.jpg" alt="Travel photo 2">
-      <img src="snehal-images/travel3.jpg" alt="Travel photo 3">
-      <img src="snehal-images/travel4.jpg" alt="Travel photo 4">
-      <img src="snehal-images/travel5.jpg" alt="Travel photo 5">
-      <img src="snehal-images/travel6.jpg" alt="Travel photo 6">
-      <img src="snehal-images/travel7.jpg" alt="Travel photo 7">
-      <img src="snehal-images/travel8.jpg" alt="Travel photo 8">
-      <img src="snehal-images/travel9.jpg" alt="Travel photo 9">
-      <img src="snehal-images/travel10.jpg" alt="Travel photo 10">
-      <img src="snehal-images/travel11.jpg" alt="Travel photo 11">
-      <img src="snehal-images/travel12.jpg" alt="Travel photo 12">
-      <img src="snehal-images/travel13.jpg" alt="Travel photo 13">
-      <img src="snehal-images/travel14.jpg" alt="Travel photo 14">
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <footer>
-    <p>© 2025 Snehal Garg</p>
-  </footer>
+  <!-- TRAVELS -->
+  <section id="travels" class="bg-light">
+    <div class="container">
+      <h2 class="section-title">My Travels</h2>
+      <div class="row row-cols-2 row-cols-md-3 g-3">
+        <div class="col"><img src="images/mexico1.JPG" class="gallery-thumb" alt="Travel 1" data-bs-toggle="modal" data-bs-target="#lightboxModal" data-full="images/travel1.jpg"></div>
+        <div class="col"><img src="images/travel2.JPG" class="gallery-thumb" alt="Travel 2" data-bs-toggle="modal" data-bs-target="#lightboxModal" data-full="images/travel2.jpg"></div>
+        <div class="col"><img src="images/travel3.jpeg" class="gallery-thumb" alt="Travel 3" data-bs-toggle="modal" data-bs-target="#lightboxModal" data-full="images/travel3.jpg"></div>
+        <div class="col"><img src="images/travel4.jpeg" class="gallery-thumb" alt="Travel 4" data-bs-toggle="modal" data-bs-target="#lightboxModal" data-full="images/travel4.jpg"></div>
+        <div class="col"><img src="images/travel5.JPG" class="gallery-thumb" alt="Travel 5" data-bs-toggle="modal" data-bs-target="#lightboxModal" data-full="images/travel5.jpg"></div>
+        <div class="col"><img src="images/travel6.JPG" class="gallery-thumb" alt="Travel 6" data-bs-toggle="modal" data-bs-target="#lightboxModal" data-full="images/travel6.jpg"></div>
+        <div class="col"><img src="images/travel7.JPG" class="gallery-thumb" alt="Travel 6" data-bs-toggle="modal" data-bs-target="#lightboxModal" data-full="images/travel6.jpg"></div>
+        <div class="col"><img src="images/travel8.JPG" class="gallery-thumb" alt="Travel 6" data-bs-toggle="modal" data-bs-target="#lightboxModal" data-full="images/travel6.jpg"></div>
+        <div class="col"><img src="images/travel9.jpg" class="gallery-thumb" alt="Travel 6" data-bs-toggle="modal" data-bs-target="#lightboxModal" data-full="images/travel6.jpg"></div>
+        <div class="col"><img src="images/travel10.jpg" class="gallery-thumb" alt="Travel 6" data-bs-toggle="modal" data-bs-target="#lightboxModal" data-full="images/travel6.jpg"></div>
+        <div class="col"><img src="images/travel11.jpg" class="gallery-thumb" alt="Travel 6" data-bs-toggle="modal" data-bs-target="#lightboxModal" data-full="images/travel6.jpg"></div>
+        <div class="col"><img src="images/travel12.jpg" class="gallery-thumb" alt="Travel 6" data-bs-toggle="modal" data-bs-target="#lightboxModal" data-full="images/travel6.jpg"></div>
+        <div class="col"><img src="images/travel13.jpg" class="gallery-thumb" alt="Travel 6" data-bs-toggle="modal" data-bs-target="#lightboxModal" data-full="images/travel6.jpg"></div>
+        <div class="col"><img src="images/travel14.jpg" class="gallery-thumb" alt="Travel 6" data-bs-toggle="modal" data-bs-target="#lightboxModal" data-full="images/travel6.jpg"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIGHTBOX MODAL (click any thumb to view larger) -->
+  <div class="modal fade" id="lightboxModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content bg-dark">
+        <button type="button" class="btn-close btn-close-white ms-auto mt-2 me-2" data-bs-dismiss="modal" aria-label="Close"></button>
+        <div class="modal-body p-0">
+          <img id="lightboxImage" src="" alt="preview" class="img-fluid w-100" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS + tiny script for lightbox -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous">
+  </script>
+  <script>
+    // Simple lightbox: put full-size image URL in data-full
+    const lightboxModal = document.getElementById('lightboxModal');
+    const lightboxImage = document.getElementById('lightboxImage');
+    document.addEventListener('click', (e) => {
+      const img = e.target.closest('img.gallery-thumb');
+      if (!img) return;
+      const full = img.getAttribute('data-full') || img.src;
+      lightboxImage.src = full;
+    });
+    lightboxModal.addEventListener('hidden.bs.modal', () => {
+      lightboxImage.src = '';
+    });
+  </script>
 </body>
 </html>
