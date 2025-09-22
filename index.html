@@ -60,6 +60,16 @@
       backdrop-filter: saturate(140%) blur(8px);
       background-color: rgba(255,255,255,.75);
     }
+    /* Captions under gallery images */
+.figure {
+  margin: 0;             /* remove default extra spacing */
+}
+.figure .figure-caption {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #6c757d;        /* Bootstrap muted-ish */
+  margin-top: .5rem;
+}
   </style>
 </head>
 <body data-bs-spy="scroll" data-bs-target="#topnav" data-bs-smooth-scroll="true" tabindex="0">
@@ -226,27 +236,157 @@
   </section>
 
   <!-- TRAVELS -->
-  <section id="travels" class="bg-light">
-    <div class="container">
-      <h2 class="section-title">My Travels</h2>
-      <div class="row row-cols-2 row-cols-md-3 g-3">
-        <div class="col"><img src="images/mexico1.JPG" class="gallery-thumb" alt="Travel 1" data-bs-toggle="modal" data-bs-target="#lightboxModal" data-full="images/travel1.jpg"></div>
-        <div class="col"><img src="images/travel2.JPG" class="gallery-thumb" alt="Travel 2" data-bs-toggle="modal" data-bs-target="#lightboxModal" data-full="images/travel2.jpg"></div>
-        <div class="col"><img src="images/travel3.jpeg" class="gallery-thumb" alt="Travel 3" data-bs-toggle="modal" data-bs-target="#lightboxModal" data-full="images/travel3.jpg"></div>
-        <div class="col"><img src="images/travel4.jpeg" class="gallery-thumb" alt="Travel 4" data-bs-toggle="modal" data-bs-target="#lightboxModal" data-full="images/travel4.jpg"></div>
-        <div class="col"><img src="images/travel5.JPG" class="gallery-thumb" alt="Travel 5" data-bs-toggle="modal" data-bs-target="#lightboxModal" data-full="images/travel5.jpg"></div>
-        <div class="col"><img src="images/travel6.JPG" class="gallery-thumb" alt="Travel 6" data-bs-toggle="modal" data-bs-target="#lightboxModal" data-full="images/travel6.jpg"></div>
-        <div class="col"><img src="images/travel7.JPG" class="gallery-thumb" alt="Travel 6" data-bs-toggle="modal" data-bs-target="#lightboxModal" data-full="images/travel6.jpg"></div>
-        <div class="col"><img src="images/travel8.JPG" class="gallery-thumb" alt="Travel 6" data-bs-toggle="modal" data-bs-target="#lightboxModal" data-full="images/travel6.jpg"></div>
-        <div class="col"><img src="images/travel9.jpg" class="gallery-thumb" alt="Travel 6" data-bs-toggle="modal" data-bs-target="#lightboxModal" data-full="images/travel6.jpg"></div>
-        <div class="col"><img src="images/travel10.jpg" class="gallery-thumb" alt="Travel 6" data-bs-toggle="modal" data-bs-target="#lightboxModal" data-full="images/travel6.jpg"></div>
-        <div class="col"><img src="images/travel11.jpg" class="gallery-thumb" alt="Travel 6" data-bs-toggle="modal" data-bs-target="#lightboxModal" data-full="images/travel6.jpg"></div>
-        <div class="col"><img src="images/travel12.jpg" class="gallery-thumb" alt="Travel 6" data-bs-toggle="modal" data-bs-target="#lightboxModal" data-full="images/travel6.jpg"></div>
-        <div class="col"><img src="images/travel13.jpg" class="gallery-thumb" alt="Travel 6" data-bs-toggle="modal" data-bs-target="#lightboxModal" data-full="images/travel6.jpg"></div>
-        <div class="col"><img src="images/travel14.jpg" class="gallery-thumb" alt="Travel 6" data-bs-toggle="modal" data-bs-target="#lightboxModal" data-full="images/travel6.jpg"></div>
+<!-- TRAVELS -->
+<section id="travels" class="bg-light">
+  <div class="container">
+    <h2 class="section-title">My Travels</h2>
+
+    <div class="row row-cols-2 row-cols-md-3 g-3">
+
+      <div class="col">
+        <figure class="figure">
+          <img src="images/mexico1.JPG"
+               class="figure-img img-fluid gallery-thumb"
+               alt="Mexico beach day"
+               data-full="images/mexico1.JPG">
+          <figcaption class="figure-caption">Mexico — Tulum beach day</figcaption>
+        </figure>
       </div>
+
+      <div class="col">
+        <figure class="figure">
+          <img src="images/travel2.JPG"
+               class="figure-img img-fluid gallery-thumb"
+               alt="Sunset overlook"
+               data-full="images/travel2.JPG">
+          <figcaption class="figure-caption">San Francisco — Sunset overlook</figcaption>
+        </figure>
+      </div>
+
+      <div class="col">
+        <figure class="figure">
+          <img src="images/travel3.jpeg"
+               class="figure-img img-fluid gallery-thumb"
+               alt="City skyline at dusk"
+               data-full="images/travel3.jpeg">
+          <figcaption class="figure-caption">City skyline at dusk</figcaption>
+        </figure>
+      </div>
+
+      <div class="col">
+        <figure class="figure">
+          <img src="images/travel4.jpeg"
+               class="figure-img img-fluid gallery-thumb"
+               alt="Mountain trail"
+               data-full="images/travel4.jpeg">
+          <figcaption class="figure-caption">Mountain trail</figcaption>
+        </figure>
+      </div>
+
+      <div class="col">
+        <figure class="figure">
+          <img src="images/travel5.JPG"
+               class="figure-img img-fluid gallery-thumb"
+               alt="Coastal cliffs"
+               data-full="images/travel5.JPG">
+          <figcaption class="figure-caption">Coastal cliffs</figcaption>
+        </figure>
+      </div>
+
+      <div class="col">
+        <figure class="figure">
+          <img src="images/travel6.JPG"
+               class="figure-img img-fluid gallery-thumb"
+               alt="Old town streets"
+               data-full="images/travel6.JPG">
+          <figcaption class="figure-caption">Old town streets</figcaption>
+        </figure>
+      </div>
+
+      <div class="col">
+        <figure class="figure">
+          <img src="images/travel7.JPG"
+               class="figure-img img-fluid gallery-thumb"
+               alt="Lakeside morning"
+               data-full="images/travel7.JPG">
+          <figcaption class="figure-caption">Lakeside morning</figcaption>
+        </figure>
+      </div>
+
+      <div class="col">
+        <figure class="figure">
+          <img src="images/travel8.JPG"
+               class="figure-img img-fluid gallery-thumb"
+               alt="Desert road trip"
+               data-full="images/travel8.JPG">
+          <figcaption class="figure-caption">Desert road trip</figcaption>
+        </figure>
+      </div>
+
+      <div class="col">
+        <figure class="figure">
+          <img src="images/travel9.jpg"
+               class="figure-img img-fluid gallery-thumb"
+               alt="Rainforest hike"
+               data-full="images/travel9.jpg">
+          <figcaption class="figure-caption">Rainforest hike</figcaption>
+        </figure>
+      </div>
+
+      <div class="col">
+        <figure class="figure">
+          <img src="images/travel10.jpg"
+               class="figure-img img-fluid gallery-thumb"
+               alt="Snowy getaway"
+               data-full="images/travel10.jpg">
+          <figcaption class="figure-caption">Snowy getaway</figcaption>
+        </figure>
+      </div>
+
+      <div class="col">
+        <figure class="figure">
+          <img src="images/travel11.jpg"
+               class="figure-img img-fluid gallery-thumb"
+               alt="Museum day"
+               data-full="images/travel11.jpg">
+          <figcaption class="figure-caption">Museum day</figcaption>
+        </figure>
+      </div>
+
+      <div class="col">
+        <figure class="figure">
+          <img src="images/travel12.jpg"
+               class="figure-img img-fluid gallery-thumb"
+               alt="Canyon view"
+               data-full="images/travel12.jpg">
+          <figcaption class="figure-caption">Canyon view</figcaption>
+        </figure>
+      </div>
+
+      <div class="col">
+        <figure class="figure">
+          <img src="images/travel13.jpg"
+               class="figure-img img-fluid gallery-thumb"
+               alt="Island sunset"
+               data-full="images/travel13.jpg">
+          <figcaption class="figure-caption">Island sunset</figcaption>
+        </figure>
+      </div>
+
+      <div class="col">
+        <figure class="figure">
+          <img src="images/travel14.jpg"
+               class="figure-img img-fluid gallery-thumb"
+               alt="Market day"
+               data-full="images/travel14.jpg">
+          <figcaption class="figure-caption">Market day</figcaption>
+        </figure>
+      </div>
+
     </div>
-  </section>
+  </div>
+</section>
+
 
   <!-- LIGHTBOX MODAL (click any thumb to view larger) -->
   <div class="modal fade" id="lightboxModal" tabindex="-1" aria-hidden="true">
