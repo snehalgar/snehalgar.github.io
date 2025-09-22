@@ -87,6 +87,18 @@
   display: block;
   object-fit: contain;   /* show whole image */
 }
+/* Make the Family image much smaller (and keep it crisp) */
+#family .family-photo {
+  max-width: 260px;   /* pick your size */
+  width: 100%;
+  display: block;
+  border-radius: .5rem;
+}
+
+/* Optional: a touch bigger on md+ screens */
+@media (min-width: 768px) {
+  #family .family-photo { max-width: 320px; }
+}
   </style>
 </head>
 <body data-bs-spy="scroll" data-bs-target="#topnav" data-bs-smooth-scroll="true" tabindex="0">
@@ -140,7 +152,7 @@
           </div>
         </div>
         <div class="col-md-7 order-md-2">
-          <img src="images/family1.jpg" class="gallery-thumb"
+          <img src="images/family1.jpg" class="gallery-thumb family-photo d-block mx-auto ms-md-auto"
                alt="Family after my white coat ceremony"
                data-full="images/family1.jpg" loading="lazy">
         </div>
