@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Snehal Garg</title>
 
-  <!-- Bootstrap 5 CSS -->
   <link
     href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
     rel="stylesheet"
@@ -18,8 +17,10 @@
     body { background: #f8f9fa; }
     section { padding: 4rem 0; }
     .section-title { border-bottom: 3px solid #20c997; display: inline-block; padding-bottom: .25rem; margin-bottom: 1.25rem; }
+
     .hero-img { max-width: 280px; border-radius: .75rem; }
     @media (min-width: 768px) { .hero-img { max-width: 340px; } }
+
     .soft-card { border: 0; border-radius: 1rem; box-shadow: 0 .5rem 1.25rem rgba(0,0,0,.06); background: #fff; }
     .navbar-blur { backdrop-filter: saturate(140%) blur(8px); background-color: rgba(255,255,255,.75); }
     .btn-teal { background-color: #20c997; border-color: #20c997; }
@@ -28,38 +29,43 @@
     /* Base thumbnails */
     .gallery-thumb { width: 100%; display: block; border-radius: .5rem; }
 
-    /* Figures & captions (used in Travels) */
+    /* Figures & captions (Travels) */
     .figure { margin: 0; }
     .figure .figure-caption { text-align: center; font-size: .9rem; color: #6c757d; margin-top: .5rem; line-height: 1.25; }
 
-    /* TRAVELS grid (uniform, not cropped or squished) */
-    .travel-grid {
-      --tile: 150px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(var(--tile), var(--tile)));
-      gap: 12px;
-      justify-content: center;
+    /* Masonry (dynamic) grid using CSS Columns */
+    .masonry {
+      column-gap: 12px;
+      column-fill: balance;
     }
-    @media (min-width: 576px) { .travel-grid { --tile: 160px; } }
-    @media (min-width: 768px) { .travel-grid { --tile: 170px; } }
-    @media (min-width: 992px) { .travel-grid { --tile: 180px; } }
-    .travel-grid .gallery-thumb { aspect-ratio: 4/3; object-fit: contain; background: #f1f3f5; }
+    /* columns per breakpoint */
+    @media (max-width: 575.98px) { .masonry { column-count: 2; } }
+    @media (min-width: 576px) and (max-width: 991.98px) { .masonry { column-count: 3; } }
+    @media (min-width: 992px) { .masonry { column-count: 4; } }
 
-    /* ETSY grid (same look, no captions) */
-    .etsy-grid {
-      --tile: 150px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(var(--tile), var(--tile)));
-      gap: 12px;
-      justify-content: center;
+    .masonry-item {
+      break-inside: avoid;
+      -webkit-column-break-inside: avoid;
+      -moz-column-break-inside: avoid;
+      margin-bottom: 12px;
+      width: 100%;
+      display: inline-block;
     }
-    @media (min-width: 576px) { .etsy-grid { --tile: 160px; } }
-    @media (min-width: 768px) { .etsy-grid { --tile: 170px; } }
-    @media (min-width: 992px) { .etsy-grid { --tile: 180px; } }
-    .etsy-grid .gallery-thumb { aspect-ratio: 4/3; object-fit: contain; background: #f1f3f5; }
+
+    /* Images in masonry: natural aspect (no crop/squish) */
+    .masonry .gallery-thumb {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      background: #f1f3f5; /* subtle letterbox if needed */
+    }
 
     /* Lightbox image sizing */
-    #lbCarousel .carousel-item img { max-height: calc(100vh - 140px); object-fit: contain; background: #0b0b0b; }
+    #lbCarousel .carousel-item img {
+      max-height: calc(100vh - 140px);
+      object-fit: contain;
+      background: #0b0b0b;
+    }
   </style>
 </head>
 <body data-bs-spy="scroll" data-bs-target="#topnav" data-bs-smooth-scroll="true" tabindex="0">
@@ -73,9 +79,8 @@
       <div id="navMenu" class="collapse navbar-collapse">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="#dog">My Dog</a></li>
-          <li class="nav-item"><a class="nav-link" href="#hobbies">Hobbies</a></li>
           <li class="nav-item"><a class="nav-link" href="#family">Family</a></li>
+          <li class="nav-item"><a class="nav-link" href="#dog">My Dog</a></li>
           <li class="nav-item"><a class="nav-link" href="#etsy">Etsy</a></li>
           <li class="nav-item"><a class="nav-link" href="#travels">Travels</a></li>
         </ul>
@@ -95,7 +100,7 @@
           </div>
         </div>
         <div class="col-md-5 text-center">
-          <img src="images/snehal1.jpeg" alt="Me" class="img-fluid hero-img shadow-sm">
+          <img src="images/snehal1.jpeg" alt="Me" class="img-fluid hero-img shadow-sm" loading="lazy">
         </div>
       </div>
     </div>
@@ -113,7 +118,7 @@
           </div>
         </div>
         <div class="col-lg-4">
-          <img src="images/snehal1.jpeg" class="img-fluid rounded-3" style="max-width: 320px; display:block; margin-inline:auto;" alt="About image">
+          <img src="images/snehal1.jpeg" class="img-fluid rounded-3" style="max-width: 320px; display:block; margin-inline:auto;" alt="About image" loading="lazy">
         </div>
       </div>
     </div>
@@ -125,7 +130,7 @@
       <div class="row row-cols-2 row-cols-md-4 g-3">
         <div class="col">
           <img src="images/family1.jpg" class="gallery-thumb" alt="Family 1"
-               data-full="images/family1.jpg" data-caption="Family — Saturday picnic">
+               data-full="images/family1.jpg" data-caption="Family — Saturday picnic" loading="lazy">
         </div>
       </div>
     </div>
@@ -145,11 +150,11 @@
         </div>
         <div class="col-md-7">
           <div class="row row-cols-2 row-cols-md-3 g-3">
-            <div class="col"><img src="images/bumi1.jpg" class="gallery-thumb" alt="Bumi 1" data-full="images/bumi1.jpg" data-caption="Bumi — post-nap stretch"></div>
-            <div class="col"><img src="images/bumi2.jpg" class="gallery-thumb" alt="Bumi 2" data-full="images/bumi2.jpg" data-caption="Bumi — treat patrol"></div>
-            <div class="col"><img src="images/bumi3.jpg" class="gallery-thumb" alt="Bumi 3" data-full="images/bumi3.jpg" data-caption="Bumi — couch commander"></div>
-            <div class="col"><img src="images/bumi5.jpg" class="gallery-thumb" alt="Bumi 5" data-full="images/bumi5.jpg" data-caption="Bumi — backyard zoomies"></div>
-            <div class="col"><img src="images/bumi4.jpg" class="gallery-thumb" alt="Bumi 4" data-full="images/bumi4.jpg" data-caption="Bumi — bedtime blink"></div>
+            <div class="col"><img src="images/bumi1.jpg" class="gallery-thumb" alt="Bumi 1" data-full="images/bumi1.jpg" data-caption="Bumi — post-nap stretch" loading="lazy"></div>
+            <div class="col"><img src="images/bumi2.jpg" class="gallery-thumb" alt="Bumi 2" data-full="images/bumi2.jpg" data-caption="Bumi — treat patrol" loading="lazy"></div>
+            <div class="col"><img src="images/bumi3.jpg" class="gallery-thumb" alt="Bumi 3" data-full="images/bumi3.jpg" data-caption="Bumi — couch commander" loading="lazy"></div>
+            <div class="col"><img src="images/bumi5.jpg" class="gallery-thumb" alt="Bumi 5" data-full="images/bumi5.jpg" data-caption="Bumi — backyard zoomies" loading="lazy"></div>
+            <div class="col"><img src="images/bumi4.jpg" class="gallery-thumb" alt="Bumi 4" data-full="images/bumi4.jpg" data-caption="Bumi — bedtime blink" loading="lazy"></div>
           </div>
         </div>
       </div>
@@ -159,9 +164,9 @@
   <section id="etsy">
     <div class="container">
       <h2 class="section-title">My Etsy Business</h2>
-      <div class="row g-4 align-items-center">
+      <div class="row g-4">
         <div class="col-lg-6">
-          <div class="soft-card p-4">
+          <div class="soft-card p-4 h-100">
             <p class="text-muted">
               I make and sell Indian wedding posters on Etsy.
               Check out the shop for current listings.
@@ -172,12 +177,22 @@
           </div>
         </div>
         <div class="col-lg-6">
-          <div class="etsy-grid">
-            <img src="images/etsy1.png" class="gallery-thumb" alt="Etsy item 1" data-full="images/etsy1.png" data-caption="Poster — Floral Mandala">
-            <img src="images/etsy2.png" class="gallery-thumb" alt="Etsy item 2" data-full="images/etsy2.png" data-caption="Poster — Peacock & Paisley">
-            <img src="images/etsy3.png" class="gallery-thumb" alt="Etsy item 3" data-full="images/etsy3.png" data-caption="Poster — Minimal Script">
-            <img src="images/etsy4.png" class="gallery-thumb" alt="Etsy item 4" data-full="images/etsy4.png" data-caption="Poster — Bold Lotus">
-            <img src="images/etsy5.png" class="gallery-thumb" alt="Etsy item 5" data-full="images/etsy5.png" data-caption="Poster — Gold Foil Style">
+          <div class="masonry">
+            <div class="masonry-item">
+              <img src="images/etsy1.png" class="gallery-thumb" alt="Etsy item 1" data-full="images/etsy1.png" data-caption="Poster — Floral Mandala" loading="lazy">
+            </div>
+            <div class="masonry-item">
+              <img src="images/etsy2.png" class="gallery-thumb" alt="Etsy item 2" data-full="images/etsy2.png" data-caption="Poster — Peacock & Paisley" loading="lazy">
+            </div>
+            <div class="masonry-item">
+              <img src="images/etsy3.png" class="gallery-thumb" alt="Etsy item 3" data-full="images/etsy3.png" data-caption="Poster — Minimal Script" loading="lazy">
+            </div>
+            <div class="masonry-item">
+              <img src="images/etsy4.png" class="gallery-thumb" alt="Etsy item 4" data-full="images/etsy4.png" data-caption="Poster — Bold Lotus" loading="lazy">
+            </div>
+            <div class="masonry-item">
+              <img src="images/etsy5.png" class="gallery-thumb" alt="Etsy item 5" data-full="images/etsy5.png" data-caption="Poster — Gold Foil Style" loading="lazy">
+            </div>
           </div>
         </div>
       </div>
@@ -187,68 +202,67 @@
   <section id="travels" class="bg-light">
     <div class="container">
       <h2 class="section-title">My Travels</h2>
-      <div class="travel-grid">
-        <figure class="figure">
-          <img src="images/mexico1.JPG" class="figure-img img-fluid gallery-thumb" alt="Mexico beach day" data-full="images/mexico1.JPG">
+      <div class="masonry">
+        <figure class="figure masonry-item">
+          <img src="images/mexico1.JPG" class="figure-img img-fluid gallery-thumb" alt="Mexico beach day" data-full="images/mexico1.JPG" loading="lazy">
           <figcaption class="figure-caption">Mexico — Tulum beach day</figcaption>
         </figure>
-        <figure class="figure">
-          <img src="images/travel2.JPG" class="figure-img img-fluid gallery-thumb" alt="Sunset overlook" data-full="images/travel2.JPG">
+        <figure class="figure masonry-item">
+          <img src="images/travel2.JPG" class="figure-img img-fluid gallery-thumb" alt="Sunset overlook" data-full="images/travel2.JPG" loading="lazy">
           <figcaption class="figure-caption">San Francisco — Sunset overlook</figcaption>
         </figure>
-        <figure class="figure">
-          <img src="images/travel3.jpeg" class="figure-img img-fluid gallery-thumb" alt="City skyline at dusk" data-full="images/travel3.jpeg">
+        <figure class="figure masonry-item">
+          <img src="images/travel3.jpeg" class="figure-img img-fluid gallery-thumb" alt="City skyline at dusk" data-full="images/travel3.jpeg" loading="lazy">
           <figcaption class="figure-caption">City skyline at dusk</figcaption>
         </figure>
-        <figure class="figure">
-          <img src="images/travel4.jpeg" class="figure-img img-fluid gallery-thumb" alt="Mountain trail" data-full="images/travel4.jpeg">
+        <figure class="figure masonry-item">
+          <img src="images/travel4.jpeg" class="figure-img img-fluid gallery-thumb" alt="Mountain trail" data-full="images/travel4.jpeg" loading="lazy">
           <figcaption class="figure-caption">Mountain trail</figcaption>
         </figure>
-        <figure class="figure">
-          <img src="images/travel5.JPG" class="figure-img img-fluid gallery-thumb" alt="Coastal cliffs" data-full="images/travel5.JPG">
+        <figure class="figure masonry-item">
+          <img src="images/travel5.JPG" class="figure-img img-fluid gallery-thumb" alt="Coastal cliffs" data-full="images/travel5.JPG" loading="lazy">
           <figcaption class="figure-caption">Coastal cliffs</figcaption>
         </figure>
-        <figure class="figure">
-          <img src="images/travel6.JPG" class="figure-img img-fluid gallery-thumb" alt="Old town streets" data-full="images/travel6.JPG">
+        <figure class="figure masonry-item">
+          <img src="images/travel6.JPG" class="figure-img img-fluid gallery-thumb" alt="Old town streets" data-full="images/travel6.JPG" loading="lazy">
           <figcaption class="figure-caption">Old town streets</figcaption>
         </figure>
-        <figure class="figure">
-          <img src="images/travel7.JPG" class="figure-img img-fluid gallery-thumb" alt="Lakeside morning" data-full="images/travel7.JPG">
+        <figure class="figure masonry-item">
+          <img src="images/travel7.JPG" class="figure-img img-fluid gallery-thumb" alt="Lakeside morning" data-full="images/travel7.JPG" loading="lazy">
           <figcaption class="figure-caption">Lakeside morning</figcaption>
         </figure>
-        <figure class="figure">
-          <img src="images/travel8.JPG" class="figure-img img-fluid gallery-thumb" alt="Desert road trip" data-full="images/travel8.JPG">
+        <figure class="figure masonry-item">
+          <img src="images/travel8.JPG" class="figure-img img-fluid gallery-thumb" alt="Desert road trip" data-full="images/travel8.JPG" loading="lazy">
           <figcaption class="figure-caption">Desert road trip</figcaption>
         </figure>
-        <figure class="figure">
-          <img src="images/travel9.jpg" class="figure-img img-fluid gallery-thumb" alt="Rainforest hike" data-full="images/travel9.jpg">
+        <figure class="figure masonry-item">
+          <img src="images/travel9.jpg" class="figure-img img-fluid gallery-thumb" alt="Rainforest hike" data-full="images/travel9.jpg" loading="lazy">
           <figcaption class="figure-caption">Rainforest hike</figcaption>
         </figure>
-        <figure class="figure">
-          <img src="images/travel10.jpg" class="figure-img img-fluid gallery-thumb" alt="Snowy getaway" data-full="images/travel10.jpg">
+        <figure class="figure masonry-item">
+          <img src="images/travel10.jpg" class="figure-img img-fluid gallery-thumb" alt="Snowy getaway" data-full="images/travel10.jpg" loading="lazy">
           <figcaption class="figure-caption">Snowy getaway</figcaption>
         </figure>
-        <figure class="figure">
-          <img src="images/travel11.jpg" class="figure-img img-fluid gallery-thumb" alt="Museum day" data-full="images/travel11.jpg">
+        <figure class="figure masonry-item">
+          <img src="images/travel11.jpg" class="figure-img img-fluid gallery-thumb" alt="Museum day" data-full="images/travel11.jpg" loading="lazy">
           <figcaption class="figure-caption">Museum day</figcaption>
         </figure>
-        <figure class="figure">
-          <img src="images/travel12.jpg" class="figure-img img-fluid gallery-thumb" alt="Canyon view" data-full="images/travel12.jpg">
+        <figure class="figure masonry-item">
+          <img src="images/travel12.jpg" class="figure-img img-fluid gallery-thumb" alt="Canyon view" data-full="images/travel12.jpg" loading="lazy">
           <figcaption class="figure-caption">Canyon view</figcaption>
         </figure>
-        <figure class="figure">
-          <img src="images/travel13.jpg" class="figure-img img-fluid gallery-thumb" alt="Island sunset" data-full="images/travel13.jpg">
+        <figure class="figure masonry-item">
+          <img src="images/travel13.jpg" class="figure-img img-fluid gallery-thumb" alt="Island sunset" data-full="images/travel13.jpg" loading="lazy">
           <figcaption class="figure-caption">Island sunset</figcaption>
         </figure>
-        <figure class="figure">
-          <img src="images/travel14.jpg" class="figure-img img-fluid gallery-thumb" alt="Market day" data-full="images/travel14.jpg">
+        <figure class="figure masonry-item">
+          <img src="images/travel14.jpg" class="figure-img img-fluid gallery-thumb" alt="Market day" data-full="images/travel14.jpg" loading="lazy">
           <figcaption class="figure-caption">Market day</figcaption>
         </figure>
       </div>
     </div>
   </section>
 
-  <!-- LIGHTBOX MODAL -->
   <div class="modal fade" id="lightboxModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl">
       <div class="modal-content bg-dark">
@@ -273,14 +287,12 @@
     </div>
   </div>
 
-  <!-- Bootstrap JS bundle (required) -->
   <script
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous">
   </script>
 
-  <!-- Unified lightbox (comment-free) -->
   <script>
   (function () {
     const modalEl = document.getElementById('lightboxModal');
@@ -321,7 +333,6 @@
       if (existing) existing.dispose();
       new bootstrap.Carousel(carouselEl, { interval: false, keyboard: true, ride: false });
       updateCaption();
-
       carouselEl.addEventListener('slid.bs.carousel', updateCaption, { once: true });
     }
 
