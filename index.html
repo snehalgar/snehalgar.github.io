@@ -66,28 +66,26 @@
       object-fit: contain;
       background: #0b0b0b;
     }
-    /* DOG: masonry layout (no extra white space) */
-#dog .masonry { column-gap: 12px; column-fill: balance; }
-@media (max-width: 575.98px) { #dog .masonry { column-count: 2; } }
-@media (min-width: 576px) and (max-width: 991.98px) { #dog .masonry { column-count: 3; } }
-@media (min-width: 992px) { #dog .masonry { column-count: 3; } }
-
-#dog .masonry-item {
-  break-inside: avoid;
-  -webkit-column-break-inside: avoid;
-  -moz-column-break-inside: avoid;
-  margin-bottom: 12px;
-  width: 100%;
-  display: inline-block;
+ /* DOG: responsive masonry grid (image-height driven) */
+#dog .dog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 12px;
+  grid-auto-rows: 8px;   /* base row unit for masonry math */
+  grid-auto-flow: dense;
 }
 
-#dog .masonry .gallery-thumb {
-  width: 100%;
-  height: auto;           /* no fixed heights */
-  object-fit: contain;    /* never crop/squish */
-  background: #f1f3f5;    /* subtle letterbox when needed */
+#dog .dog-item {
   border-radius: .5rem;
+  overflow: hidden;
+  background: #f1f3f5;   /* subtle backdrop for mixed ratios */
+}
+
+#dog .dog-item .gallery-thumb {
+  width: 100%;
+  height: auto;          /* no squish, use natural height */
   display: block;
+  object-fit: contain;   /* show whole image */
 }
   </style>
 </head>
@@ -172,12 +170,27 @@
           </div>
         </div>
         <div class="col-md-7">
-          <div class="row row-cols-2 row-cols-md-3 g-3">
-            <div class="col"><img src="images/bumi1.jpg" class="gallery-thumb" alt="Bumi 1" data-full="images/dog1.jpg"></div>
-            <div class="col"><img src="images/bumi2.jpg" class="gallery-thumb" alt="Bumi 2" data-full="images/dog2.jpg"></div>
-            <div class="col"><img src="images/bumi3.jpg" class="gallery-thumb" alt="Bumi 3" data-full="images/dog3.jpg"></div>
-            <div class="col"><img src="images/bumi5.jpg" class="gallery-thumb" alt="Bumi 5" data-full="images/dog3.jpg"></div>
-            <div class="col"><img src="images/bumi4.jpg" class="gallery-thumb" alt="Bumi 4" data-full="images/dog3.jpg"></div>
+          <div class="dog-grid">
+            <div class="dog-item">
+              <img src="images/bumi1.jpg" class="gallery-thumb" alt="Bumi 1"
+                   data-full="images/bumi1.jpg" data-caption="Bumi — post-nap stretch" loading="lazy">
+            </div>
+            <div class="dog-item">
+              <img src="images/bumi2.jpg" class="gallery-thumb" alt="Bumi 2"
+                   data-full="images/bumi2.jpg" data-caption="Bumi — treat patrol" loading="lazy">
+            </div>
+            <div class="dog-item">
+              <img src="images/bumi3.jpg" class="gallery-thumb" alt="Bumi 3"
+                   data-full="images/bumi3.jpg" data-caption="Bumi — couch commander" loading="lazy">
+            </div>
+            <div class="dog-item">
+              <img src="images/bumi5.jpg" class="gallery-thumb" alt="Bumi 5"
+                   data-full="images/bumi5.jpg" data-caption="Bumi — backyard zoomies" loading="lazy">
+            </div>
+            <div class="dog-item">
+              <img src="images/bumi4.jpg" class="gallery-thumb" alt="Bumi 4"
+                   data-full="images/bumi4.jpg" data-caption="Bumi — bedtime blink" loading="lazy">
+            </div>
           </div>
         </div>
       </div>
@@ -385,6 +398,39 @@
       captionEl.textContent = '';
       const existing = bootstrap.Carousel.getInstance(carouselEl);
       if (existing) existing.dispose();
+    });
+  })();
+  </script>
+
+<script>
+  (function () {
+    const grid = document.querySelector('#dog .dog-grid');
+    if (!grid) return;
+  
+    function calcSpan(item) {
+      const styles = getComputedStyle(grid);
+      const row = parseFloat(styles.getPropertyValue('grid-auto-rows'));
+      const gap = parseFloat(styles.getPropertyValue('gap'));
+      const img = item.querySelector('img');
+      if (!img) return;
+      const h = img.getBoundingClientRect().height;
+      const span = Math.ceil((h + gap) / (row + gap));
+      item.style.gridRowEnd = `span ${span}`;
+    }
+  
+    function layoutAll() {
+      grid.querySelectorAll('.dog-item').forEach(calcSpan);
+    }
+  
+    // Recalculate on load & resize
+    window.addEventListener('load', layoutAll);
+    window.addEventListener('resize', layoutAll);
+  
+    // Recalculate when each image loads or changes size
+    const ro = new ResizeObserver(() => layoutAll());
+    grid.querySelectorAll('.dog-item img').forEach(img => {
+      if (!img.complete) img.addEventListener('load', () => calcSpan(img.closest('.dog-item')));
+      ro.observe(img);
     });
   })();
   </script>
