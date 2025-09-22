@@ -17,12 +17,7 @@
     html { scroll-behavior: smooth; }
     body { background: #f8f9fa; }
     section { padding: 4rem 0; }
-    section .section-title {
-      border-bottom: 3px solid #20c997;
-      display: inline-block;
-      padding-bottom: .25rem;
-      margin-bottom: 1.25rem;
-    }
+    .section-title { border-bottom: 3px solid #20c997; display: inline-block; padding-bottom: .25rem; margin-bottom: 1.25rem; }
     .hero-img { max-width: 280px; border-radius: .75rem; }
     @media (min-width: 768px) { .hero-img { max-width: 340px; } }
     .soft-card { border: 0; border-radius: 1rem; box-shadow: 0 .5rem 1.25rem rgba(0,0,0,.06); background: #fff; }
@@ -30,38 +25,45 @@
     .btn-teal { background-color: #20c997; border-color: #20c997; }
     .btn-teal:hover { background-color: #1aa383; border-color: #1aa383; }
 
-    /* Captions under gallery images */
-    .figure { margin: 0; }
-    .figure .figure-caption { text-align: center; font-size: .9rem; color: #6c757d; margin-top: .5rem; }
-
-    /* Base thumbnail (no fixed height to avoid squish) */
+    /* Base thumbnails */
     .gallery-thumb { width: 100%; display: block; border-radius: .5rem; }
 
-    /* TRAVELS grid: uniform, small tiles, no-crop (contain) */
-    .travel-grid { --tile: 150px; display: grid; grid-template-columns: repeat(auto-fit, minmax(var(--tile), var(--tile))); gap: 12px; justify-content: center; }
+    /* Figures & captions (used in Travels) */
+    .figure { margin: 0; }
+    .figure .figure-caption { text-align: center; font-size: .9rem; color: #6c757d; margin-top: .5rem; line-height: 1.25; }
+
+    /* TRAVELS grid (uniform, not cropped or squished) */
+    .travel-grid {
+      --tile: 150px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(var(--tile), var(--tile)));
+      gap: 12px;
+      justify-content: center;
+    }
     @media (min-width: 576px) { .travel-grid { --tile: 160px; } }
     @media (min-width: 768px) { .travel-grid { --tile: 170px; } }
     @media (min-width: 992px) { .travel-grid { --tile: 180px; } }
     .travel-grid .gallery-thumb { aspect-ratio: 4/3; object-fit: contain; background: #f1f3f5; }
 
-    /* ETSY grid: same look, no captions */
-    .etsy-grid { --tile: 150px; display: grid; grid-template-columns: repeat(auto-fit, minmax(var(--tile), var(--tile))); gap: 12px; justify-content: center; }
+    /* ETSY grid (same look, no captions) */
+    .etsy-grid {
+      --tile: 150px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(var(--tile), var(--tile)));
+      gap: 12px;
+      justify-content: center;
+    }
     @media (min-width: 576px) { .etsy-grid { --tile: 160px; } }
     @media (min-width: 768px) { .etsy-grid { --tile: 170px; } }
     @media (min-width: 992px) { .etsy-grid { --tile: 180px; } }
     .etsy-grid .gallery-thumb { aspect-ratio: 4/3; object-fit: contain; background: #f1f3f5; }
 
     /* Lightbox image sizing */
-    #lbCarousel .carousel-item img {
-      max-height: calc(100vh - 140px);
-      object-fit: contain;
-      background: #0b0b0b;
-    }
+    #lbCarousel .carousel-item img { max-height: calc(100vh - 140px); object-fit: contain; background: #0b0b0b; }
   </style>
 </head>
 <body data-bs-spy="scroll" data-bs-target="#topnav" data-bs-smooth-scroll="true" tabindex="0">
 
-  <!-- NAVBAR -->
   <nav id="topnav" class="navbar navbar-expand-md navbar-light fixed-top navbar-blur border-bottom">
     <div class="container">
       <a class="navbar-brand fw-bold" href="#home">Snehal Garg</a>
@@ -71,8 +73,9 @@
       <div id="navMenu" class="collapse navbar-collapse">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="#family">Family</a></li>
           <li class="nav-item"><a class="nav-link" href="#dog">My Dog</a></li>
+          <li class="nav-item"><a class="nav-link" href="#hobbies">Hobbies</a></li>
+          <li class="nav-item"><a class="nav-link" href="#family">Family</a></li>
           <li class="nav-item"><a class="nav-link" href="#etsy">Etsy</a></li>
           <li class="nav-item"><a class="nav-link" href="#travels">Travels</a></li>
         </ul>
@@ -80,7 +83,6 @@
     </div>
   </nav>
 
-  <!-- HERO / HOME -->
   <header id="home" class="py-5" style="margin-top:56px;">
     <div class="container">
       <div class="row align-items-center g-4">
@@ -99,7 +101,6 @@
     </div>
   </header>
 
-  <!-- ABOUT -->
   <section id="about">
     <div class="container">
       <h2 class="section-title">About Me</h2>
@@ -118,19 +119,18 @@
     </div>
   </section>
 
-  <!-- FAMILY -->
   <section id="family" class="bg-light">
     <div class="container">
       <h2 class="section-title">My Family</h2>
       <div class="row row-cols-2 row-cols-md-4 g-3">
         <div class="col">
-          <img src="images/family1.jpg" class="gallery-thumb" alt="Family 1" data-full="images/family1.jpg">
+          <img src="images/family1.jpg" class="gallery-thumb" alt="Family 1"
+               data-full="images/family1.jpg" data-caption="Family — Saturday picnic">
         </div>
       </div>
     </div>
   </section>
 
-  <!-- DOG -->
   <section id="dog" class="bg-light">
     <div class="container">
       <h2 class="section-title">My Dog</h2>
@@ -145,18 +145,17 @@
         </div>
         <div class="col-md-7">
           <div class="row row-cols-2 row-cols-md-3 g-3">
-            <div class="col"><img src="images/bumi1.jpg" class="gallery-thumb" alt="Bumi 1" data-full="images/bumi1.jpg"></div>
-            <div class="col"><img src="images/bumi2.jpg" class="gallery-thumb" alt="Bumi 2" data-full="images/bumi2.jpg"></div>
-            <div class="col"><img src="images/bumi3.jpg" class="gallery-thumb" alt="Bumi 3" data-full="images/bumi3.jpg"></div>
-            <div class="col"><img src="images/bumi5.jpg" class="gallery-thumb" alt="Bumi 5" data-full="images/bumi5.jpg"></div>
-            <div class="col"><img src="images/bumi4.jpg" class="gallery-thumb" alt="Bumi 4" data-full="images/bumi4.jpg"></div>
+            <div class="col"><img src="images/bumi1.jpg" class="gallery-thumb" alt="Bumi 1" data-full="images/bumi1.jpg" data-caption="Bumi — post-nap stretch"></div>
+            <div class="col"><img src="images/bumi2.jpg" class="gallery-thumb" alt="Bumi 2" data-full="images/bumi2.jpg" data-caption="Bumi — treat patrol"></div>
+            <div class="col"><img src="images/bumi3.jpg" class="gallery-thumb" alt="Bumi 3" data-full="images/bumi3.jpg" data-caption="Bumi — couch commander"></div>
+            <div class="col"><img src="images/bumi5.jpg" class="gallery-thumb" alt="Bumi 5" data-full="images/bumi5.jpg" data-caption="Bumi — backyard zoomies"></div>
+            <div class="col"><img src="images/bumi4.jpg" class="gallery-thumb" alt="Bumi 4" data-full="images/bumi4.jpg" data-caption="Bumi — bedtime blink"></div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ETSY -->
   <section id="etsy">
     <div class="container">
       <h2 class="section-title">My Etsy Business</h2>
@@ -174,18 +173,17 @@
         </div>
         <div class="col-lg-6">
           <div class="etsy-grid">
-            <img src="images/etsy1.png" class="gallery-thumb" alt="Etsy item 1" data-full="images/etsy1.png">
-            <img src="images/etsy2.png" class="gallery-thumb" alt="Etsy item 2" data-full="images/etsy2.png">
-            <img src="images/etsy3.png" class="gallery-thumb" alt="Etsy item 3" data-full="images/etsy3.png">
-            <img src="images/etsy4.png" class="gallery-thumb" alt="Etsy item 4" data-full="images/etsy4.png">
-            <img src="images/etsy5.png" class="gallery-thumb" alt="Etsy item 5" data-full="images/etsy5.png">
+            <img src="images/etsy1.png" class="gallery-thumb" alt="Etsy item 1" data-full="images/etsy1.png" data-caption="Poster — Floral Mandala">
+            <img src="images/etsy2.png" class="gallery-thumb" alt="Etsy item 2" data-full="images/etsy2.png" data-caption="Poster — Peacock & Paisley">
+            <img src="images/etsy3.png" class="gallery-thumb" alt="Etsy item 3" data-full="images/etsy3.png" data-caption="Poster — Minimal Script">
+            <img src="images/etsy4.png" class="gallery-thumb" alt="Etsy item 4" data-full="images/etsy4.png" data-caption="Poster — Bold Lotus">
+            <img src="images/etsy5.png" class="gallery-thumb" alt="Etsy item 5" data-full="images/etsy5.png" data-caption="Poster — Gold Foil Style">
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- TRAVELS -->
   <section id="travels" class="bg-light">
     <div class="container">
       <h2 class="section-title">My Travels</h2>
@@ -275,14 +273,14 @@
     </div>
   </div>
 
-  <!-- Bootstrap JS (REQUIRED for the lightbox) -->
+  <!-- Bootstrap JS bundle (required) -->
   <script
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous">
   </script>
 
-  <!-- Lightbox JS (comment-free) -->
+  <!-- Unified lightbox (comment-free) -->
   <script>
   (function () {
     const modalEl = document.getElementById('lightboxModal');
