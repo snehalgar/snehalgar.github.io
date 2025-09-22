@@ -110,6 +110,32 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+/* --- Consistent grid for the Etsy section (no captions) --- */
+.etsy-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px; /* even gaps on all sides */
+}
+
+@media (min-width: 768px) {
+  .etsy-grid {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  }
+}
+
+/* Uniform tile height (same as your Travels thumbs) */
+.etsy-grid .gallery-thumb {
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+  border-radius: .5rem;
+  display: block;
+  cursor: pointer; /* nicer UX for the lightbox */
+}
+
+@media (min-width: 768px) {
+  .etsy-grid .gallery-thumb { height: 190px; }
+}
   </style>
 </head>
 <body data-bs-spy="scroll" data-bs-target="#topnav" data-bs-smooth-scroll="true" tabindex="0">
@@ -248,32 +274,36 @@
   </section>
 
   <!-- ETSY -->
-  <section id="etsy">
-    <div class="container">
-      <h2 class="section-title">My Etsy Business</h2>
-      <div class="row g-4 align-items-center">
-        <div class="col-lg-6">
-          <div class="soft-card p-4">
-            <p class="text-muted">
-              I make and sell Indian wedding posters on Etsy.
-              Check out the shop for current listings.
-            </p>
-            <a href="https://www.etsy.com/shop/PureImaginationPrint" target="_blank" class="btn btn-success">Visit my Etsy Shop</a>
-          </div>
+<section id="etsy">
+  <div class="container">
+    <h2 class="section-title">My Etsy Business</h2>
+    <div class="row g-4 align-items-center">
+      <div class="col-lg-6">
+        <div class="soft-card p-4">
+          <p class="text-muted">
+            I make and sell Indian wedding posters on Etsy.
+            Check out the shop for current listings.
+          </p>
+          <a href="https://www.etsy.com/shop/PureImaginationPrint" target="_blank" class="btn btn-success">
+            Visit my Etsy Shop
+          </a>
         </div>
-        <div class="col-lg-6">
-          <div class="row row-cols-2 g-3">
-            <div class="col"><img src="images/etsy1.png" class="gallery-thumb" alt="Etsy item 1" data-bs-toggle="modal" data-bs-target="#lightboxModal" data-full="images/etsy1.jpg"></div>
-            <div class="col"><img src="images/etsy2.png" class="gallery-thumb" alt="Etsy item 2" data-bs-toggle="modal" data-bs-target="#lightboxModal" data-full="images/etsy2.jpg"></div>
-            <div class="col"><img src="images/etsy3.png" class="gallery-thumb" alt="Etsy item 2" data-bs-toggle="modal" data-bs-target="#lightboxModal" data-full="images/etsy2.jpg"></div>
-            <div class="col"><img src="images/etsy4.png" class="gallery-thumb" alt="Etsy item 2" data-bs-toggle="modal" data-bs-target="#lightboxModal" data-full="images/etsy2.jpg"></div>
-            <div class="col"><img src="images/etsy5.png" class="gallery-thumb" alt="Etsy item 2" data-bs-toggle="modal" data-bs-target="#lightboxModal" data-full="images/etsy2.jpg"></div>
+      </div>
 
-          </div>
+      <!-- RIGHT COLUMN: Grid of thumbnails (no captions) -->
+      <div class="col-lg-6">
+        <div class="etsy-grid">
+          <img src="images/etsy1.png" class="gallery-thumb" alt="Etsy item 1" data-full="images/etsy1.png">
+          <img src="images/etsy2.png" class="gallery-thumb" alt="Etsy item 2" data-full="images/etsy2.png">
+          <img src="images/etsy3.png" class="gallery-thumb" alt="Etsy item 3" data-full="images/etsy3.png">
+          <img src="images/etsy4.png" class="gallery-thumb" alt="Etsy item 4" data-full="images/etsy4.png">
+          <img src="images/etsy5.png" class="gallery-thumb" alt="Etsy item 5" data-full="images/etsy5.png">
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
+
 
 <!-- TRAVELS -->
 <section id="travels" class="bg-light">
