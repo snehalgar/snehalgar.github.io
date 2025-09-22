@@ -70,6 +70,46 @@
   color: #6c757d;        /* Bootstrap muted-ish */
   margin-top: .5rem;
 }
+
+/* --- Consistent grid just for the Travels section --- */
+.travel-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px; /* perfect, even gaps */
+}
+
+/* Slightly larger tiles on md+ */
+@media (min-width: 768px) {
+  .travel-grid {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  }
+}
+
+/* Uniform tiles: fixed thumb height; caption clamps to 2 lines */
+.travel-grid .figure { margin: 0; }
+.travel-grid .gallery-thumb {
+  width: 100%;
+  height: 170px;      /* make all thumbs equal height */
+  object-fit: cover;
+  border-radius: .5rem;
+  display: block;
+}
+@media (min-width: 768px) {
+  .travel-grid .gallery-thumb { height: 190px; }
+}
+
+/* Caption styling + clamp to 2 lines (ok to cut off) */
+.travel-grid .figure-caption {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #6c757d;
+  margin-top: .5rem;
+  line-height: 1.25;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;       /* <= cut off after 2 lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
   </style>
 </head>
 <body data-bs-spy="scroll" data-bs-target="#topnav" data-bs-smooth-scroll="true" tabindex="0">
@@ -235,157 +275,129 @@
     </div>
   </section>
 
-  <!-- TRAVELS -->
 <!-- TRAVELS -->
 <section id="travels" class="bg-light">
   <div class="container">
     <h2 class="section-title">My Travels</h2>
 
-    <div class="row row-cols-2 row-cols-md-3 g-3">
+    <div class="travel-grid">
 
-      <div class="col">
-        <figure class="figure">
-          <img src="images/mexico1.JPG"
-               class="figure-img img-fluid gallery-thumb"
-               alt="Mexico beach day"
-               data-full="images/mexico1.JPG">
-          <figcaption class="figure-caption">Mexico — Tulum beach day</figcaption>
-        </figure>
-      </div>
+      <figure class="figure">
+        <img src="images/mexico1.JPG"
+             class="figure-img img-fluid gallery-thumb"
+             alt="Mexico beach day"
+             data-full="images/mexico1.JPG">
+        <figcaption class="figure-caption">Mexico — Tulum beach day</figcaption>
+      </figure>
 
-      <div class="col">
-        <figure class="figure">
-          <img src="images/travel2.JPG"
-               class="figure-img img-fluid gallery-thumb"
-               alt="Sunset overlook"
-               data-full="images/travel2.JPG">
-          <figcaption class="figure-caption">San Francisco — Sunset overlook</figcaption>
-        </figure>
-      </div>
+      <figure class="figure">
+        <img src="images/travel2.JPG"
+             class="figure-img img-fluid gallery-thumb"
+             alt="Sunset overlook"
+             data-full="images/travel2.JPG">
+        <figcaption class="figure-caption">San Francisco — Sunset overlook</figcaption>
+      </figure>
 
-      <div class="col">
-        <figure class="figure">
-          <img src="images/travel3.jpeg"
-               class="figure-img img-fluid gallery-thumb"
-               alt="City skyline at dusk"
-               data-full="images/travel3.jpeg">
-          <figcaption class="figure-caption">City skyline at dusk</figcaption>
-        </figure>
-      </div>
+      <figure class="figure">
+        <img src="images/travel3.jpeg"
+             class="figure-img img-fluid gallery-thumb"
+             alt="City skyline at dusk"
+             data-full="images/travel3.jpeg">
+        <figcaption class="figure-caption">City skyline at dusk</figcaption>
+      </figure>
 
-      <div class="col">
-        <figure class="figure">
-          <img src="images/travel4.jpeg"
-               class="figure-img img-fluid gallery-thumb"
-               alt="Mountain trail"
-               data-full="images/travel4.jpeg">
-          <figcaption class="figure-caption">Mountain trail</figcaption>
-        </figure>
-      </div>
+      <figure class="figure">
+        <img src="images/travel4.jpeg"
+             class="figure-img img-fluid gallery-thumb"
+             alt="Mountain trail"
+             data-full="images/travel4.jpeg">
+        <figcaption class="figure-caption">Mountain trail</figcaption>
+      </figure>
 
-      <div class="col">
-        <figure class="figure">
-          <img src="images/travel5.JPG"
-               class="figure-img img-fluid gallery-thumb"
-               alt="Coastal cliffs"
-               data-full="images/travel5.JPG">
-          <figcaption class="figure-caption">Coastal cliffs</figcaption>
-        </figure>
-      </div>
+      <figure class="figure">
+        <img src="images/travel5.JPG"
+             class="figure-img img-fluid gallery-thumb"
+             alt="Coastal cliffs"
+             data-full="images/travel5.JPG">
+        <figcaption class="figure-caption">Coastal cliffs</figcaption>
+      </figure>
 
-      <div class="col">
-        <figure class="figure">
-          <img src="images/travel6.JPG"
-               class="figure-img img-fluid gallery-thumb"
-               alt="Old town streets"
-               data-full="images/travel6.JPG">
-          <figcaption class="figure-caption">Old town streets</figcaption>
-        </figure>
-      </div>
+      <figure class="figure">
+        <img src="images/travel6.JPG"
+             class="figure-img img-fluid gallery-thumb"
+             alt="Old town streets"
+             data-full="images/travel6.JPG">
+        <figcaption class="figure-caption">Old town streets</figcaption>
+      </figure>
 
-      <div class="col">
-        <figure class="figure">
-          <img src="images/travel7.JPG"
-               class="figure-img img-fluid gallery-thumb"
-               alt="Lakeside morning"
-               data-full="images/travel7.JPG">
-          <figcaption class="figure-caption">Lakeside morning</figcaption>
-        </figure>
-      </div>
+      <figure class="figure">
+        <img src="images/travel7.JPG"
+             class="figure-img img-fluid gallery-thumb"
+             alt="Lakeside morning"
+             data-full="images/travel7.JPG">
+        <figcaption class="figure-caption">Lakeside morning</figcaption>
+      </figure>
 
-      <div class="col">
-        <figure class="figure">
-          <img src="images/travel8.JPG"
-               class="figure-img img-fluid gallery-thumb"
-               alt="Desert road trip"
-               data-full="images/travel8.JPG">
-          <figcaption class="figure-caption">Desert road trip</figcaption>
-        </figure>
-      </div>
+      <figure class="figure">
+        <img src="images/travel8.JPG"
+             class="figure-img img-fluid gallery-thumb"
+             alt="Desert road trip"
+             data-full="images/travel8.JPG">
+        <figcaption class="figure-caption">Desert road trip</figcaption>
+      </figure>
 
-      <div class="col">
-        <figure class="figure">
-          <img src="images/travel9.jpg"
-               class="figure-img img-fluid gallery-thumb"
-               alt="Rainforest hike"
-               data-full="images/travel9.jpg">
-          <figcaption class="figure-caption">Rainforest hike</figcaption>
-        </figure>
-      </div>
+      <figure class="figure">
+        <img src="images/travel9.jpg"
+             class="figure-img img-fluid gallery-thumb"
+             alt="Rainforest hike"
+             data-full="images/travel9.jpg">
+        <figcaption class="figure-caption">Rainforest hike</figcaption>
+      </figure>
 
-      <div class="col">
-        <figure class="figure">
-          <img src="images/travel10.jpg"
-               class="figure-img img-fluid gallery-thumb"
-               alt="Snowy getaway"
-               data-full="images/travel10.jpg">
-          <figcaption class="figure-caption">Snowy getaway</figcaption>
-        </figure>
-      </div>
+      <figure class="figure">
+        <img src="images/travel10.jpg"
+             class="figure-img img-fluid gallery-thumb"
+             alt="Snowy getaway"
+             data-full="images/travel10.jpg">
+        <figcaption class="figure-caption">Snowy getaway</figcaption>
+      </figure>
 
-      <div class="col">
-        <figure class="figure">
-          <img src="images/travel11.jpg"
-               class="figure-img img-fluid gallery-thumb"
-               alt="Museum day"
-               data-full="images/travel11.jpg">
-          <figcaption class="figure-caption">Museum day</figcaption>
-        </figure>
-      </div>
+      <figure class="figure">
+        <img src="images/travel11.jpg"
+             class="figure-img img-fluid gallery-thumb"
+             alt="Museum day"
+             data-full="images/travel11.jpg">
+        <figcaption class="figure-caption">Museum day</figcaption>
+      </figure>
 
-      <div class="col">
-        <figure class="figure">
-          <img src="images/travel12.jpg"
-               class="figure-img img-fluid gallery-thumb"
-               alt="Canyon view"
-               data-full="images/travel12.jpg">
-          <figcaption class="figure-caption">Canyon view</figcaption>
-        </figure>
-      </div>
+      <figure class="figure">
+        <img src="images/travel12.jpg"
+             class="figure-img img-fluid gallery-thumb"
+             alt="Canyon view"
+             data-full="images/travel12.jpg">
+        <figcaption class="figure-caption">Canyon view</figcaption>
+      </figure>
 
-      <div class="col">
-        <figure class="figure">
-          <img src="images/travel13.jpg"
-               class="figure-img img-fluid gallery-thumb"
-               alt="Island sunset"
-               data-full="images/travel13.jpg">
-          <figcaption class="figure-caption">Island sunset</figcaption>
-        </figure>
-      </div>
+      <figure class="figure">
+        <img src="images/travel13.jpg"
+             class="figure-img img-fluid gallery-thumb"
+             alt="Island sunset"
+             data-full="images/travel13.jpg">
+        <figcaption class="figure-caption">Island sunset</figcaption>
+      </figure>
 
-      <div class="col">
-        <figure class="figure">
-          <img src="images/travel14.jpg"
-               class="figure-img img-fluid gallery-thumb"
-               alt="Market day"
-               data-full="images/travel14.jpg">
-          <figcaption class="figure-caption">Market day</figcaption>
-        </figure>
-      </div>
+      <figure class="figure">
+        <img src="images/travel14.jpg"
+             class="figure-img img-fluid gallery-thumb"
+             alt="Market day"
+             data-full="images/travel14.jpg">
+        <figcaption class="figure-caption">Market day</figcaption>
+      </figure>
 
     </div>
   </div>
 </section>
+
 
 
   <!-- LIGHTBOX MODAL (click any thumb to view larger) -->
