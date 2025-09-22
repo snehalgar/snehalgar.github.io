@@ -136,6 +136,36 @@
 @media (min-width: 768px) {
   .etsy-grid .gallery-thumb { height: 190px; }
 }
+
+/* ===== Smaller, uniform, no-crop tiles for Travels + Etsy ===== */
+
+/* Fixed thumbnail width per breakpoint so tiles never blow up */
+.travel-grid,
+.etsy-grid {
+  --tile: 140px; /* mobile size */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(var(--tile), var(--tile)));
+  gap: 12px;
+  justify-content: center; /* center the fixed-width columns */
+}
+
+/* gently grow tiles on bigger screens (still small) */
+@media (min-width: 576px) { .travel-grid, .etsy-grid { --tile: 150px; } }
+@media (min-width: 768px) { .travel-grid, .etsy-grid { --tile: 160px; } }
+@media (min-width: 992px) { .travel-grid, .etsy-grid { --tile: 170px; } }
+/* If you want even smaller overall, drop these values by ~20px each */
+
+/* Uniform tile shape; show the whole photo (no crop) */
+.travel-grid .gallery-thumb,
+.etsy-grid .gallery-thumb {
+  width: 100%;
+  height: auto !important;   /* override any old fixed heights */
+  aspect-ratio: 4 / 3;       /* pick your shape: 4/3, 1/1 (square), etc. */
+  object-fit: contain;       /* no cropping, no squish */
+  background: #f1f3f5;       /* subtle letterbox bars when needed */
+  border-radius: .5rem;
+  display: block;
+}
   </style>
 </head>
 <body data-bs-spy="scroll" data-bs-target="#topnav" data-bs-smooth-scroll="true" tabindex="0">
