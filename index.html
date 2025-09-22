@@ -141,23 +141,28 @@
   <!-- MY FAMILY SECTION -->
   <section id="family" class="bg-light">
     <div class="container">
-      
-      <div class="row g-4 align-items-center">
-        <div class="col-md-5 order-md-1">
-          <h2 class="section-title">My Family</h2>
-          <div class="soft-card p-4 text-center">
-            <p class="text-muted mb-0">
-              Meet my Family -- my parents, sister, and partner after my white coat ceremony!
-            </p>
-          </div>
-        </div>
-        <div class="col-md-7 order-md-2">
-          <img src="images/family1.jpg" class="gallery-thumb family-photo d-block mx-auto ms-md-auto"
-               alt="Family after my white coat ceremony"
-               data-full="images/family1.jpg" loading="lazy">
+      <h2 class="section-title">My Family</h2>
+    
+      <!-- centered description card; auto height (no h-100) -->
+      <div class="soft-card p-4 text-center mx-auto mb-3" style="max-width: 720px;">
+        <p class="text-muted mb-0">
+          Meet my Family — my parents, sister, and partner after my white coat ceremony!
+        </p>
+      </div>
+    
+      <!-- grid of photos under the header+card -->
+      <div class="masonry">
+        <div class="masonry-item">
+          <img
+            src="images/family1.jpg"
+            class="gallery-thumb family-photo"
+            alt="Family after my white coat ceremony"
+            data-full="images/family1.jpg"
+            loading="lazy">
         </div>
       </div>
     </div>
+    
   </section>
 
   <!-- MY DOG SECTION -->
