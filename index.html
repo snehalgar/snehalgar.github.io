@@ -99,6 +99,25 @@
 @media (min-width: 768px) {
   #family .family-photo { max-width: 320px; }
 }
+
+/* Center each section's H2 but keep the short underline */
+.section-title {
+  display: table;                 /* shrinks to text width */
+  margin: 0 auto 1.25rem;         /* centers the title */
+}
+
+/* Center the image grids and cap their width */
+#travels .masonry,
+#etsy .masonry,
+#family .masonry,
+#dog .dog-grid {
+  max-width: 1100px;              /* adjust to taste: 900–1200 works well */
+  margin-left: auto;
+  margin-right: auto;             /* centers the grid block */
+}
+
+/* (Grid-only) If using CSS Grid (dog-grid), center columns when there's extra space */
+#dog .dog-grid { justify-content: center; }
   </style>
 </head>
 <body data-bs-spy="scroll" data-bs-target="#topnav" data-bs-smooth-scroll="true" tabindex="0">
