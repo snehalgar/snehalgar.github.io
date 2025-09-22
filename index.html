@@ -116,13 +116,16 @@
   margin-right: auto;             /* centers the grid block */
 }
 
-/* Smaller target column width => smaller thumbnails */
+/* Etsy: use column-width and clear column-count so thumbnails get smaller */
 #etsy .masonry {
-  column-width: 160px;  /* try 140–180px to taste */
+  column-count: auto;     /* IMPORTANT: neutralize earlier column-count rules */
+  column-width: 150px;    /* try 140–170px to taste */
   column-gap: 10px;
 }
-@media (min-width: 768px)  { #etsy .masonry { column-width: 170px; } }
-@media (min-width: 1200px) { #etsy .masonry { column-width: 180px; } }
+
+/* optional: tweak per breakpoint */
+@media (min-width: 576px)  { #etsy .masonry { column-width: 160px; } }
+@media (min-width: 992px)  { #etsy .masonry { column-width: 180px; } }
 
 /* (Grid-only) If using CSS Grid (dog-grid), center columns when there's extra space */
 #dog .dog-grid { justify-content: center; }
