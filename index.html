@@ -66,6 +66,29 @@
       object-fit: contain;
       background: #0b0b0b;
     }
+    /* DOG: masonry layout (no extra white space) */
+#dog .masonry { column-gap: 12px; column-fill: balance; }
+@media (max-width: 575.98px) { #dog .masonry { column-count: 2; } }
+@media (min-width: 576px) and (max-width: 991.98px) { #dog .masonry { column-count: 3; } }
+@media (min-width: 992px) { #dog .masonry { column-count: 3; } }
+
+#dog .masonry-item {
+  break-inside: avoid;
+  -webkit-column-break-inside: avoid;
+  -moz-column-break-inside: avoid;
+  margin-bottom: 12px;
+  width: 100%;
+  display: inline-block;
+}
+
+#dog .masonry .gallery-thumb {
+  width: 100%;
+  height: auto;           /* no fixed heights */
+  object-fit: contain;    /* never crop/squish */
+  background: #f1f3f5;    /* subtle letterbox when needed */
+  border-radius: .5rem;
+  display: block;
+}
   </style>
 </head>
 <body data-bs-spy="scroll" data-bs-target="#topnav" data-bs-smooth-scroll="true" tabindex="0">
@@ -149,12 +172,27 @@
           </div>
         </div>
         <div class="col-md-7">
-          <div class="row row-cols-2 row-cols-md-3 g-3">
-            <div class="col"><img src="images/bumi1.jpg" class="gallery-thumb" alt="Bumi 1" data-full="images/bumi1.jpg" data-caption="Bumi — post-nap stretch" loading="lazy"></div>
-            <div class="col"><img src="images/bumi2.jpg" class="gallery-thumb" alt="Bumi 2" data-full="images/bumi2.jpg" data-caption="Bumi — treat patrol" loading="lazy"></div>
-            <div class="col"><img src="images/bumi3.jpg" class="gallery-thumb" alt="Bumi 3" data-full="images/bumi3.jpg" data-caption="Bumi — couch commander" loading="lazy"></div>
-            <div class="col"><img src="images/bumi5.jpg" class="gallery-thumb" alt="Bumi 5" data-full="images/bumi5.jpg" data-caption="Bumi — backyard zoomies" loading="lazy"></div>
-            <div class="col"><img src="images/bumi4.jpg" class="gallery-thumb" alt="Bumi 4" data-full="images/bumi4.jpg" data-caption="Bumi — bedtime blink" loading="lazy"></div>
+          <div class="masonry">
+            <div class="masonry-item">
+              <img src="images/bumi1.jpg" class="gallery-thumb" alt="Bumi 1"
+                   data-full="images/bumi1.jpg" data-caption="Bumi — post-nap stretch" loading="lazy">
+            </div>
+            <div class="masonry-item">
+              <img src="images/bumi2.jpg" class="gallery-thumb" alt="Bumi 2"
+                   data-full="images/bumi2.jpg" data-caption="Bumi — treat patrol" loading="lazy">
+            </div>
+            <div class="masonry-item">
+              <img src="images/bumi3.jpg" class="gallery-thumb" alt="Bumi 3"
+                   data-full="images/bumi3.jpg" data-caption="Bumi — couch commander" loading="lazy">
+            </div>
+            <div class="masonry-item">
+              <img src="images/bumi5.jpg" class="gallery-thumb" alt="Bumi 5"
+                   data-full="images/bumi5.jpg" data-caption="Bumi — backyard zoomies" loading="lazy">
+            </div>
+            <div class="masonry-item">
+              <img src="images/bumi4.jpg" class="gallery-thumb" alt="Bumi 4"
+                   data-full="images/bumi4.jpg" data-caption="Bumi — bedtime blink" loading="lazy">
+            </div>
           </div>
         </div>
       </div>
