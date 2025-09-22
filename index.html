@@ -116,6 +116,14 @@
   margin-right: auto;             /* centers the grid block */
 }
 
+/* Smaller target column width => smaller thumbnails */
+#etsy .masonry {
+  column-width: 160px;  /* try 140–180px to taste */
+  column-gap: 10px;
+}
+@media (min-width: 768px)  { #etsy .masonry { column-width: 170px; } }
+@media (min-width: 1200px) { #etsy .masonry { column-width: 180px; } }
+
 /* (Grid-only) If using CSS Grid (dog-grid), center columns when there's extra space */
 #dog .dog-grid { justify-content: center; }
   </style>
