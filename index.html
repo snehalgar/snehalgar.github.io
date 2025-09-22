@@ -130,17 +130,18 @@
   <section id="family" class="bg-light">
     <div class="container">
       <h2 class="section-title">My Family</h2>
-      <div class="row g-4">
-        <div class="col-md-5">
-          <div class="soft-card p-4 h-100">
+      <div class="row g-4 align-items-center">
+        <div class="col-md-5 order-md-1">
+          <div class="soft-card p-4 text-center">
             <p class="text-muted mb-0">
               Meet my Family -- my parents, sister, and partner after my white coat ceremony!
             </p>
           </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-7 order-md-2">
           <img src="images/family1.jpg" class="gallery-thumb"
-                data-full="images/family1.jpg" loading="lazy">
+               alt="Family after my white coat ceremony"
+               data-full="images/family1.jpg" loading="lazy">
         </div>
       </div>
     </div>
@@ -150,16 +151,16 @@
   <section id="dog" class="bg-light">
     <div class="container">
       <h2 class="section-title">My Dog</h2>
-      <div class="row g-4">
-        <div class="col-md-5">
-          <div class="soft-card p-4 h-100">
+      <div class="row g-4 align-items-center">
+        <div class="col-md-5 order-md-1">
+          <div class="soft-card p-4 text-center">
             <p class="text-muted mb-0">
               Meet Bumi! — named after the character in the show Avatar: The Last Airbender.
               Favorite activities: chewing through all of our shoes and furniture.
             </p>
           </div>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-7 order-md-2">
           <div class="dog-grid">
             <div class="dog-item">
               <img src="images/bumi1.jpg" class="gallery-thumb"
@@ -195,9 +196,9 @@
   <section id="etsy">
     <div class="container">
       <h2 class="section-title">My Etsy Business</h2>
-      <div class="row g-4">
-        <div class="col-lg-6">
-          <div class="soft-card p-4 h-100">
+      <div class="row g-4 align-items-center">
+        <div class="col-lg-6 order-lg-1">
+          <div class="soft-card p-4 text-center">
             <p class="text-muted">
               I make and sell Indian wedding posters on Etsy.
               Check out the shop for current listings.
@@ -207,7 +208,7 @@
             </a>
           </div>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-6 order-lg-2">
           <div class="masonry">
             <div class="masonry-item">
               <img src="images/etsy1.png" class="gallery-thumb" data-full="images/etsy1.png" loading="lazy">
@@ -368,7 +369,7 @@
       if (existing) existing.dispose();
       new bootstrap.Carousel(carouselEl, { interval: false, keyboard: true, ride: false });
       updateCaption();
-      carouselEl.addEventListener('slid.bs.carousel', updateCaption, { once: true });
+      carouselEl.addEventListener('slid.bs.carousel', updateCaption);
     }
 
     document.addEventListener('click', (e) => {
