@@ -434,37 +434,111 @@
 
 
 
-  <!-- LIGHTBOX MODAL (click any thumb to view larger) -->
-  <div class="modal fade" id="lightboxModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-      <div class="modal-content bg-dark">
-        <button type="button" class="btn-close btn-close-white ms-auto mt-2 me-2" data-bs-dismiss="modal" aria-label="Close"></button>
-        <div class="modal-body p-0">
-          <img id="lightboxImage" src="" alt="preview" class="img-fluid w-100" />
+<!-- LIGHTBOX: one modal for all galleries -->
+<div class="modal fade" id="lightboxModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-content bg-dark">
+      <div class="modal-body p-0 position-relative">
+        <button type="button" class="btn-close btn-close-white position-absolute end-0 mt-2 me-2"
+                data-bs-dismiss="modal" aria-label="Close"></button>
+
+        <!-- Bootstrap Carousel gets filled dynamically -->
+        <div id="lbCarousel" class="carousel slide" data-bs-interval="false">
+          <div class="carousel-inner"></div>
+
+          <button class="carousel-control-prev" type="button" data-bs-target="#lbCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#lbCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
         </div>
+      </div>
+
+      <!-- Caption lives here so it’s not over the image -->
+      <div class="modal-footer justify-content-center bg-dark border-0">
+        <div id="lbCaption" class="text-white-50 small text-center w-100"></div>
       </div>
     </div>
   </div>
+</div>
 
   <!-- Bootstrap JS + tiny script for lightbox -->
-  <script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-    crossorigin="anonymous">
-  </script>
   <script>
-    // Simple lightbox: put full-size image URL in data-full
-    const lightboxModal = document.getElementById('lightboxModal');
-    const lightboxImage = document.getElementById('lightboxImage');
-    document.addEventListener('click', (e) => {
-      const img = e.target.closest('img.gallery-thumb');
-      if (!img) return;
-      const full = img.getAttribute('data-full') || img.src;
-      lightboxImage.src = full;
-    });
-    lightboxModal.addEventListener('hidden.bs.modal', () => {
-      lightboxImage.src = '';
-    });
-  </script>
+    (function () {
+      const modalEl = document.getElementById('lightboxModal');
+      const captionEl = document.getElementById('lbCaption');
+      const carouselEl = document.getElementById('lbCarousel');
+      const innerEl = carouselEl.querySelector('.carousel-inner');
+    
+      function getCaptionFor(img) {
+        const fig = img.closest('figure');
+        const figcap = fig?.querySelector('.figure-caption')?.textContent?.trim();
+        return figcap || img.getAttribute('data-caption') || img.alt || '';
+      }
+    
+      function getGroupImages(img) {
+        const section = img.closest('section');
+        const scope = section || document;
+        return Array.from(scope.querySelectorAll('img.gallery-thumb, img.lightboxable'));
+      }
+    
+      function updateCaption() {
+        const active = innerEl.querySelector('.carousel-item.active');
+        captionEl.textContent = active?.dataset.caption || '';
+      }
+    
+      function buildCarousel(nodes, startIdx) {
+        innerEl.innerHTML = nodes.map((node, i) => {
+          const full = node.getAttribute('data-full') || node.currentSrc || node.src;
+          const alt = node.alt || '';
+          const cap = getCaptionFor(node);
+          return `
+            <div class="carousel-item ${i === startIdx ? 'active' : ''}" data-caption="${cap.replace(/"/g,'&quot;')}">
+              <img src="${full}" class="d-block w-100" alt="${alt}">
+            </div>
+          `;
+        }).join('');
+    
+        const existing = bootstrap.Carousel.getInstance(carouselEl);
+        if (existing) existing.dispose();
+        new bootstrap.Carousel(carouselEl, { interval: false, keyboard: true, ride: false });
+        updateCaption();
+      }
+    
+      document.addEventListener('click', (e) => {
+        const trigger = e.target.closest('figure, img.gallery-thumb, img.lightboxable, .figure-caption');
+        if (!trigger) return;
+    
+        const img = trigger.tagName === 'FIGURE'
+          ? trigger.querySelector('img.gallery-thumb, img.lightboxable')
+          : (trigger.classList?.contains('figure-caption')
+              ? trigger.closest('figure')?.querySelector('img.gallery-thumb, img.lightboxable')
+              : trigger);
+    
+        if (!img) return;
+    
+        const nodes = getGroupImages(img);
+        const startIdx = nodes.indexOf(img);
+        if (startIdx === -1) return;
+    
+        buildCarousel(nodes, startIdx);
+        const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+        modal.show();
+      });
+    
+      modalEl.addEventListener('hidden.bs.modal', () => {
+        innerEl.innerHTML = '';
+        captionEl.textContent = '';
+        const existing = bootstrap.Carousel.getInstance(carouselEl);
+        if (existing) existing.dispose();
+      });
+    
+      carouselEl.addEventListener('slid.bs.carousel', updateCaption);
+    })();
+    </script>
+
 </body>
 </html>
