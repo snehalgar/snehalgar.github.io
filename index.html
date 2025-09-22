@@ -106,6 +106,24 @@
   margin: 0 auto 1.25rem;         /* centers the title */
 }
 
+/* Etsy: switch from masonry (columns) to a row-based CSS Grid */
+#etsy .masonry { column-count: auto !important; column-width: auto !important; } /* neutralize */
+#etsy .etsy-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* shrink-to-fit columns */
+  gap: 12px;
+  justify-items: center;   /* center each image in its cell */
+  max-width: 1100px;       /* optional cap so it doesn’t sprawl; tweak or remove */
+  margin-inline: auto;     /* center the whole grid block */
+}
+#etsy .etsy-grid .gallery-thumb {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  background: #f1f3f5;
+  border-radius: .5rem;
+}
+
 /* Center the image grids and cap their width */
 #travels .masonry,
 #etsy .masonry,
@@ -115,17 +133,6 @@
   margin-left: auto;
   margin-right: auto;             /* centers the grid block */
 }
-
-/* Etsy: use column-width and clear column-count so thumbnails get smaller */
-#etsy .masonry {
-  column-count: auto;     /* IMPORTANT: neutralize earlier column-count rules */
-  column-width: 100px;    /* try 140–170px to taste */
-  column-gap: 10px;
-}
-
-/* optional: tweak per breakpoint */
-@media (min-width: 576px)  { #etsy .masonry { column-width: 160px; } }
-@media (min-width: 992px)  { #etsy .masonry { column-width: 180px; } }
 
 /* (Grid-only) If using CSS Grid (dog-grid), center columns when there's extra space */
 #dog .dog-grid { justify-content: center; }
@@ -231,12 +238,12 @@
         </a>
       </div>
     
-      <div class="masonry">
-        <div class="masonry-item"><img src="images/etsy1.png" class="gallery-thumb" data-full="images/etsy1.png" loading="lazy"></div>
-        <div class="masonry-item"><img src="images/etsy2.png" class="gallery-thumb" data-full="images/etsy2.png" loading="lazy"></div>
-        <div class="masonry-item"><img src="images/etsy3.png" class="gallery-thumb" data-full="images/etsy3.png" loading="lazy"></div>
-        <div class="masonry-item"><img src="images/etsy4.png" class="gallery-thumb" data-full="images/etsy4.png" loading="lazy"></div>
-        <div class="masonry-item"><img src="images/etsy5.png" class="gallery-thumb" data-full="images/etsy5.png" loading="lazy"></div>
+      <div class="etsy-grid">
+        <img src="images/etsy1.png" class="gallery-thumb" data-full="images/etsy1.png" alt="Etsy item 1" loading="lazy">
+        <img src="images/etsy2.png" class="gallery-thumb" data-full="images/etsy2.png" alt="Etsy item 2" loading="lazy">
+        <img src="images/etsy3.png" class="gallery-thumb" data-full="images/etsy3.png" alt="Etsy item 3" loading="lazy">
+        <img src="images/etsy4.png" class="gallery-thumb" data-full="images/etsy4.png" alt="Etsy item 4" loading="lazy">
+        <img src="images/etsy5.png" class="gallery-thumb" data-full="images/etsy5.png" alt="Etsy item 5" loading="lazy">
       </div>
     </div>
   </section>
